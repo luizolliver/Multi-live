@@ -1,10 +1,10 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
-const path = require('path');
 
 // Inicializa banco de dados (cria tabelas e seed)
 require('./database');
