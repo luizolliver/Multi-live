@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Multi-Live Admin</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <div class="dashboard-header">
+    <h1>Multi-Live Admin</h1>
+    <nav>
+      <a href="/">Ver site</a>
+      <button id="btn-logout">Sair</button>
+    </nav>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="events">Eventos</button>
+    <button class="tab-btn" data-tab="lives">Lives</button>
+  </div>
+
+  <!-- Tab: Eventos -->
+  <div id="tab-events" class="tab-content active">
+    <div class="section-header">
+      <h2>Eventos</h2>
+      <button class="btn btn-success" id="btn-new-event">Novo Evento</button>
+    </div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Titulo</th>
+            <th>Status</th>
+            <th>Data</th>
+            <th>Acoes</th>
+          </tr>
+        </thead>
+        <tbody id="events-table-body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tab: Lives -->
+  <div id="tab-lives" class="tab-content">
+    <div class="section-header">
+      <h2>Lives</h2>
+      <button class="btn btn-success" id="btn-new-live">Nova Live</button>
+    </div>
+    <div class="lives-filter">
+      <label for="live-event-filter">Evento:</label>
+      <select id="live-event-filter">
+        <option value="">Selecione um evento...</option>
+      </select>
+    </div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Ordem</th>
+            <th>Streamer</th>
+            <th>URL YouTube</th>
+            <th>Acoes</th>
+          </tr>
+        </thead>
+        <tbody id="lives-table-body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal Evento -->
+  <div class="modal-overlay" id="modal-event">
+    <div class="modal">
+      <h3 id="modal-event-title">Novo Evento</h3>
+      <form id="form-event">
+        <input type="hidden" id="event-id">
+        <div class="form-group">
+          <label for="event-titulo">Titulo</label>
+          <input type="text" id="event-titulo" required maxlength="200">
+        </div>
+        <div class="form-group">
+          <label for="event-ativo">Status</label>
+          <select id="event-ativo">
+            <option value="true">Ativo</option>
+            <option value="false">Inativo</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-cancel" onclick="closeModal('modal-event')">Cancelar</button>
+          <button type="submit" class="btn btn-success">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Live -->
+  <div class="modal-overlay" id="modal-live">
+    <div class="modal">
+      <h3 id="modal-live-title">Nova Live</h3>
+      <form id="form-live">
+        <input type="hidden" id="live-id">
+        <div class="form-group">
+          <label for="live-evento-id">Evento</label>
+          <select id="live-evento-id" required>
+            <option value="">Selecione...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="live-nome">Nome do Streamer</label>
+          <input type="text" id="live-nome" required maxlength="100">
+        </div>
+        <div class="form-group">
+          <label for="live-url">URL do YouTube</label>
+          <input type="text" id="live-url" required placeholder="https://youtube.com/watch?v=...">
+        </div>
+        <div class="form-group">
+          <label for="live-ordem">Posicao (1-5)</label>
+          <select id="live-ordem" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-cancel" onclick="closeModal('modal-live')">Cancelar</button>
+          <button type="submit" class="btn btn-success">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>
